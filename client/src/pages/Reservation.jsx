@@ -140,19 +140,23 @@ function Reservation() {
 
   return (
     <div className="bg-light-primary min-h-screen">
-      <div className="w-full px-4 sm:px-6 lg:px-8 mx-auto py-8 sm:py-16">
-        <div className="flex flex-col sm:flex-row items-center justify-between mb-6 sm:mb-10">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-lora font-semibold text-center sm:text-left">
+      <div className="w-full max-w-[1232px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16">
+        {/* Header Section */}
+        <div className="flex items-center justify-between mb-10">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-lora font-semibold">
             Reservation
           </h1>
-          <p className="text-2xl sm:text-3xl lg:text-[32px] font-medium text-[#0F0F12] mt-4 sm:mt-0">
+          <p className="text-2xl sm:text-3xl lg:text-[32px] font-medium text-[#0F0F12]">
             {sessionTypePrice ? sessionTypePrice + " LE" : null}
           </p>
         </div>
-        <div className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-[258px] px-0 sm:px-[14px]">
+
+        {/* Form and Image Section */}
+        <div className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-[258px]">
+          {/* Form Section */}
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col gap-4 w-full lg:grow"
+            className="flex flex-col gap-4 w-full lg:max-w-[626px]"
           >
             <div className="flex flex-col gap-2">
               <label className="text-[#0F0F12] font-semibold text-xl sm:text-2xl leading-[36px] font-lora">
@@ -173,7 +177,8 @@ function Reservation() {
                 ))}
               </select>
             </div>
-            <div className="flex flex-col sm:flex-row justify-between items-center relative gap-4 sm:gap-0">
+
+            <div className="flex justify-between items-center relative">
               <label htmlFor="date" className="font-semibold text-lg">
                 Select date
               </label>
@@ -182,14 +187,15 @@ function Reservation() {
                 value={date}
                 onChange={handleDateChange}
                 type="date"
-                className="p-3 rounded-md border-2 border-[#CBD2E0] w-full sm:w-auto"
+                className="p-3 rounded-md border-2 border-[#CBD2E0]"
               />
               {date && availableBranches.branches.length === 0 && (
-                <span className="absolute sm:static sm:right-[-172px] text-[10px] font-semibold text-[#0F0F12] mt-2 sm:mt-0">
+                <span className="absolute right-[-172px] text-[10px] font-semibold text-[#0F0F12]">
                   No Sessions available on that date
                 </span>
               )}
             </div>
+
             <div className="flex flex-col">
               <label>Branch</label>
               <select
@@ -207,13 +213,14 @@ function Reservation() {
                 ))}
               </select>
             </div>
-            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-[29px]">
+
+            <div className="flex items-center gap-[29px]">
               <label htmlFor="time">Time: </label>
               <select
                 id="time"
                 value={time}
                 onChange={handleTimeChange}
-                className="p-3 rounded-md border-2 border-[#CBD2E0] w-full sm:grow"
+                className="p-3 rounded-md border-2 border-[#CBD2E0] grow"
               >
                 <option value="" disabled>
                   00:00
@@ -223,6 +230,7 @@ function Reservation() {
                 ))}
               </select>
             </div>
+
             <div className="flex flex-col">
               <label>Doctor</label>
               <select
@@ -238,13 +246,16 @@ function Reservation() {
                 ))}
               </select>
             </div>
+
             <button className="bg-secondary-text-color text-white py-4 rounded-md font-medium text-[18px]">
               Submit Reservation
             </button>
           </form>
+
+          {/* Image Section */}
           <img
             src={heroImage}
-            className="w-full lg:w-[626px] h-auto lg:h-[461px] rounded-[10px] border-2 border-black mt-8 lg:mt-0"
+            className="w-full lg:w-[626px] h-auto lg:h-[461px] rounded-[10px] border-2 border-black"
             alt=""
           />
         </div>

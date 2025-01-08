@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import BranchList from "../components/Doctors/BranchList";
 import { useDispatch } from "react-redux";
 import { createDoctor } from "../redux/api/doctorApiActions";
+import { toast } from "react-toastify";
 
 function AddDoctor() {
   const [firstName, setFirstName] = useState("");
@@ -33,6 +34,54 @@ function AddDoctor() {
       phoneNumber,
       workingHours: branches,
     };
+    if (!doctor.firstName) {
+      return toast.warning("First Name is required");
+    }
+
+    if (!doctor.lastName) {
+      return toast.warning("Last Name is required");
+    }
+
+    if (!doctor.email) {
+      return toast.warning("Email is required");
+    }
+
+    if (!doctor.password) {
+      return toast.warning("Password is required");
+    }
+
+    if (!doctor.phoneNumber) {
+      return toast.warning("Phone Number is required");
+    }
+
+    if (!doctor.workingHours.length) {
+      return toast.warning("At least one branch is required");
+    }
+
+    for (let i = 0; i < doctor.workingHours.length; i++) {
+      const branch = doctor.workingHours[i];
+
+      if (!branch.branch) {
+        toast.warning(`Branch name is required for branch ${i + 1}`);
+        return;
+      }
+
+      if (!branch.startingTime) {
+        toast.warning(`Starting time is required for branch ${i + 1}`);
+        return;
+      }
+
+      if (!branch.endingTime) {
+        toast.warning(`Ending time is required for branch ${i + 1}`);
+        return;
+      }
+
+      if (!branch.workingDays || branch.workingDays.length === 0) {
+        toast.warning(`Working days are required for branch ${i + 1}`);
+        return;
+      }
+    }
+
     dispatch(createDoctor(doctor));
   };
 
@@ -65,6 +114,7 @@ function AddDoctor() {
                   id="firstName"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
+                  required
                 />
               </div>
               <div className="flex flex-col gap-2">
@@ -90,6 +140,7 @@ function AddDoctor() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="p-3 rounded-md border-2 border-[#CBD2E0]"
+                required
               />
             </div>
             <div className="flex flex-col gap-2 mb-[30px]">
@@ -102,6 +153,7 @@ function AddDoctor() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="p-3 rounded-md border-2 border-[#CBD2E0]"
+                required
               />
             </div>
             <div className="flex flex-col gap-2 mb-[30px]">
@@ -115,6 +167,7 @@ function AddDoctor() {
                 onChange={(e) => setPhoneNumber(e.target.value)}
                 className="p-3 rounded-md border-2 border-[#CBD2E0]"
                 placeholder="+201978343232"
+                required
               />
             </div>
 

@@ -49,17 +49,22 @@ module.exports.createDoctorCtrl = async (req, res) => {
 
     // check if doctor chose the same day for two clincs
     const days = new Set();
-    const workingHoursCorrect = req.body.workingHours.map((branch) => {
-      branch.workingDays.map((day) => {
+    let isWorkingHoursCorrect = true;
+
+    for (const branch of req.body.workingHours) {
+      for (const day of branch.workingDays) {
         if (days.has(day)) {
-          return false;
+          isWorkingHoursCorrect = false; // Duplicate day found
+          break; // Exit the inner loop
         } else {
-          days.add(day);
+          days.add(day); // Add the day to the set
         }
-      });
-      return true;
-    });
-    if (!workingHoursCorrect) {
+      }
+      if (!isWorkingHoursCorrect) {
+        break;
+      }
+    }
+    if (!isWorkingHoursCorrect) {
       return res.status(400).json({
         success: false,
         data: null,
@@ -113,7 +118,7 @@ module.exports.getDoctorCtrl = async (req, res) => {
  */
 module.exports.getAllDoctorsCtrl = async (req, res) => {
   try {
-    const doctors = await Doctor.find();
+    const doctors = await Doctor.find().sort({ createdAt: -1 });
     res.status(200).json({
       success: true,
       data: doctors,

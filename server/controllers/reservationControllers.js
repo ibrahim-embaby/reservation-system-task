@@ -1,3 +1,4 @@
+const { Doctor } = require("../models/Doctor");
 const {
   Reservation,
   validateCreateReservation,
@@ -28,6 +29,7 @@ const {
  * @method POST
  */
 module.exports.createReservationCtrl = async (req, res) => {
+  const days = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
   try {
     const { error } = validateCreateReservation(req.body);
     if (error) {
@@ -37,6 +39,32 @@ module.exports.createReservationCtrl = async (req, res) => {
         message: error.details[0].message,
       });
     }
+
+    let { selectedDate, branch, time, doctor } = req.body;
+    const [firstName, lastName] = doctor.split(" ");
+    selectedDate = new Date(selectedDate);
+    const dayName = days[selectedDate.getDay()];
+
+    const doctorAvailable = await Doctor.findOne({
+      firstName: firstName,
+      lastName: lastName,
+      workingHours: {
+        $elemMatch: {
+          branch: branch,
+          startingTime: time,
+          workingDays: { $in: [dayName] },
+        },
+      },
+    });
+
+    if (!doctorAvailable) {
+      return res.status(403).json({
+        success: false,
+        data: null,
+        message: "there is no doctors available with this choices",
+      });
+    }
+
     const newReservation = await Reservation.create(req.body);
     res.status(201).json({
       success: true,

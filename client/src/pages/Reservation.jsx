@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchDoctors } from "../redux/api/doctorApiActions";
 import { createReservation } from "../redux/api/reservationApiActions";
 import { days } from "../utils/constants";
+import { toast } from "react-toastify";
 
 function Reservation() {
   const [sessionType, setSessionType] = useState("");
@@ -33,6 +34,27 @@ function Reservation() {
       doctor,
       price: sessionTypePrice,
     };
+
+    if (!reservation.sessionType) {
+      return toast.warning("Session Type is required");
+    }
+
+    if (!reservation.selectedDate) {
+      return toast.warning("Date is required");
+    }
+
+    if (!reservation.branch) {
+      return toast.warning("Branch is required");
+    }
+
+    if (!reservation.time) {
+      return toast.warning("Time is required");
+    }
+
+    if (!reservation.doctor) {
+      return toast.warning("Doctor is required");
+    }
+
     dispatch(createReservation(reservation));
   };
 

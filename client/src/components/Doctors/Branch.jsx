@@ -63,6 +63,7 @@ function Branch({ index, branchData, updateBranch, disabledDays }) {
             value={branchData.branch}
             onChange={(e) => handleChange("branch", e.target.value)}
             className="p-3 rounded-md border-2 border-[#CBD2E0]"
+            required
           >
             <option value="">Select</option>
             {branchOptions.map((branch, index) => (
@@ -81,6 +82,7 @@ function Branch({ index, branchData, updateBranch, disabledDays }) {
             value={branchData.startingTime}
             onChange={(e) => handleChange("startingTime", e.target.value)}
             className="p-3 rounded-md border-2 border-[#CBD2E0]"
+            required
           >
             <option value="">Select</option>
             {timeOptions.map((time) => (
@@ -99,6 +101,7 @@ function Branch({ index, branchData, updateBranch, disabledDays }) {
             value={branchData.endingTime}
             onChange={(e) => handleChange("endingTime", e.target.value)}
             className="p-3 rounded-md border-2 border-[#CBD2E0]"
+            required
           >
             <option value="">Select</option>
             {filteredEndingTimes.map((time) => (

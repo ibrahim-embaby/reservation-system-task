@@ -1,26 +1,29 @@
 const mongoose = require("mongoose");
 const Joi = require("joi");
 
-const ReservationSchema = new mongoose.Schema({
-  sessionType: {
-    type: String,
+const ReservationSchema = new mongoose.Schema(
+  {
+    sessionType: {
+      type: String,
+    },
+    selectedDate: {
+      type: String,
+    },
+    branch: {
+      type: String,
+    },
+    time: {
+      type: String,
+    },
+    doctor: {
+      type: String,
+    },
+    price: {
+      type: String,
+    },
   },
-  selectedDate: {
-    type: String,
-  },
-  branch: {
-    type: String,
-  },
-  time: {
-    type: String,
-  },
-  doctor: {
-    type: String,
-  },
-  price: {
-    type: String,
-  },
-});
+  { timestamps: true }
+);
 
 const Reservation = mongoose.model("Reservation", ReservationSchema);
 

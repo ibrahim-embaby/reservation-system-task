@@ -1,43 +1,49 @@
-import { doctors } from "../dummyData";
 import DoctorItem from "../components/Doctors/DoctorItem";
 import { Link } from "react-router-dom";
+import Add from "../assets/icons/Add";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchDoctors } from "../redux/api/doctorApiActions";
 
 function Doctors() {
+  const { doctors, loading } = useSelector((state) => state.doctor);
+  const dispatch = useDispatch();
+  console.log(doctors);
+
+  useEffect(() => {
+    dispatch(fetchDoctors());
+  }, []);
+
   return (
     <div className="bg-light-primary min-h-screen">
-      <div className="w-2/3 mx-auto py-16">
+      <div className="w-2/3 container mx-auto py-16">
         <div className="flex items-center justify-between mb-10">
           <h1 className="text-4xl font-lora font-semibold">Doctors</h1>
           <Link
             to={"/add-doctor"}
             className="flex items-center justify-center gap-2"
           >
-            <svg
-              width="27"
-              height="27"
-              viewBox="0 0 27 27"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M13.5 19.125C13.8188 19.125 14.0861 19.017 14.3021 18.801C14.5181 18.585 14.6257 18.318 14.625 18V14.625H18.0281C18.3469 14.625 18.6094 14.517 18.8156 14.301C19.0219 14.085 19.125 13.818 19.125 13.5C19.125 13.1812 19.017 12.9139 18.801 12.6979C18.585 12.4819 18.318 12.3743 18 12.375H14.625V8.97187C14.625 8.65312 14.517 8.39062 14.301 8.18438C14.085 7.97813 13.818 7.875 13.5 7.875C13.1812 7.875 12.9139 7.983 12.6979 8.199C12.4819 8.415 12.3743 8.682 12.375 9V12.375H8.97187C8.65312 12.375 8.39062 12.483 8.18438 12.699C7.97813 12.915 7.875 13.182 7.875 13.5C7.875 13.8188 7.983 14.0861 8.199 14.3021C8.415 14.5181 8.682 14.6257 9 14.625H12.375V18.0281C12.375 18.3469 12.483 18.6094 12.699 18.8156C12.915 19.0219 13.182 19.125 13.5 19.125ZM13.5 24.75C11.9438 24.75 10.4813 24.4545 9.1125 23.8635C7.74375 23.2725 6.55313 22.4711 5.54063 21.4594C4.52813 20.4469 3.72675 19.2563 3.1365 17.8875C2.54625 16.5187 2.25075 15.0562 2.25 13.5C2.25 11.9438 2.5455 10.4813 3.1365 9.1125C3.7275 7.74375 4.52888 6.55313 5.54063 5.54063C6.55313 4.52813 7.74375 3.72675 9.1125 3.1365C10.4813 2.54625 11.9438 2.25075 13.5 2.25C15.0562 2.25 16.5187 2.5455 17.8875 3.1365C19.2563 3.7275 20.4469 4.52888 21.4594 5.54063C22.4719 6.55313 23.2736 7.74375 23.8646 9.1125C24.4556 10.4813 24.7507 11.9438 24.75 13.5C24.75 15.0562 24.4545 16.5187 23.8635 17.8875C23.2725 19.2563 22.4711 20.4469 21.4594 21.4594C20.4469 22.4719 19.2563 23.2736 17.8875 23.8646C16.5187 24.4556 15.0562 24.7507 13.5 24.75Z"
-                fill="#0F0F12"
-              />
-            </svg>
+            <Add />
             Add
           </Link>
         </div>
         <div className="flex flex-col gap-0.5">
-          {doctors.map((doctor, index) => (
-            <DoctorItem
-              key={index}
-              doctorName={doctor}
-              styles={{
-                firstItem: index === 0 ? true : false,
-                lastItem: index === doctors.length - 1 ? true : false,
-              }}
-            />
-          ))}
+          {loading ? (
+            <div className="text-center">loading...</div>
+          ) : doctors.length ? (
+            doctors.map((doctor, index) => (
+              <DoctorItem
+                key={doctor._id}
+                doctor={doctor}
+                styles={{
+                  firstItem: index === 0 ? true : false,
+                  lastItem: index === doctors.length - 1 ? true : false,
+                }}
+              />
+            ))
+          ) : (
+            <div className="text-center"> No Doctors Added Yet</div>
+          )}
         </div>
       </div>
     </div>

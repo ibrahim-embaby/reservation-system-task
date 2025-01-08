@@ -28,6 +28,7 @@ app.use(
 
 // Routes
 app.use("/api/v1/doctors", require("./routes/doctorRotues"));
+app.use("/api/v1/reservations", require("./routes/reservationRotues"));
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {

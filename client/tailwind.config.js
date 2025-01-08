@@ -17,6 +17,7 @@ export const theme = {
       raleway: ["Raleway", "sans-serif"],
       rosarivo: ["Rosarivo", "serif"],
       roboto: ["Roboto", "sans-serif"],
+      "work-sans": ["Work Sans, sans-serif"],
     },
   },
 };

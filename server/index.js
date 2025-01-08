@@ -30,7 +30,7 @@ app.use(
 app.use("/api/v1/doctors", require("./routes/doctorRotues"));
 app.use("/api/v1/reservations", require("./routes/reservationRotues"));
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}`);
 });

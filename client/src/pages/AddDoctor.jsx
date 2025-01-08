@@ -87,37 +87,37 @@ function AddDoctor() {
 
   return (
     <div className="bg-light-primary min-h-screen">
-      <div className="w-2/3 mx-auto py-48 container">
-        <div className="mb-10">
-          <h1 className="text-5xl font-lora font-semibold leading-[60px]">
+      <div className="w-full md:w-2/3 mx-auto py-12 md:py-48 px-4 sm:px-6 lg:px-8">
+        <div className="mb-8 md:mb-10">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-lora font-semibold leading-tight md:leading-[60px]">
             Add a doctor
           </h1>
         </div>
         <div className="flex justify-center">
-          <form onSubmit={handleSubmit}>
-            <div className="flex justify-center mb-[50px]">
+          <form onSubmit={handleSubmit} className="w-full max-w-2xl">
+            <div className="flex justify-center mb-8 md:mb-[50px]">
               <div className="relative box-content">
                 <Avatar />
-                <p className="rounded-full bg-[#287F89] h-[58px] w-[58px] flex items-center justify-center absolute top-[206px] left-[219px]">
+                <p className="rounded-full bg-[#287F89] h-12 w-12 md:h-[58px] md:w-[58px] flex items-center justify-center absolute top-[150px] md:top-[206px] left-[150px] md:left-[219px]">
                   <Pen />
                 </p>
               </div>
             </div>
-            <div className="flex justify-between gap-[42px] mb-[30px]">
-              <div className="flex flex-col gap-2">
+            <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-[42px] mb-6 md:mb-[30px]">
+              <div className="flex flex-col gap-2 w-full md:w-1/2">
                 <label htmlFor="firstName" className="font-semibold">
                   First Name
                 </label>
                 <input
                   type="text"
-                  className="p-3 w-[288px] rounded-md border-2 border-[#CBD2E0]"
+                  className="p-3 w-full rounded-md border-2 border-[#CBD2E0]"
                   id="firstName"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   required
                 />
               </div>
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 w-full md:w-1/2">
                 <label htmlFor="lastName" className="font-semibold">
                   Last Name
                 </label>
@@ -126,11 +126,11 @@ function AddDoctor() {
                   id="lastName"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
-                  className="p-3 w-[288px] rounded-md border-2 border-[#CBD2E0]"
+                  className="p-3 w-full rounded-md border-2 border-[#CBD2E0]"
                 />
               </div>
             </div>
-            <div className="flex flex-col gap-2 mb-[30px]">
+            <div className="flex flex-col gap-2 mb-6 md:mb-[30px]">
               <label htmlFor="email" className="font-semibold">
                 Email
               </label>
@@ -143,7 +143,7 @@ function AddDoctor() {
                 required
               />
             </div>
-            <div className="flex flex-col gap-2 mb-[30px]">
+            <div className="flex flex-col gap-2 mb-6 md:mb-[30px]">
               <label htmlFor="password" className="font-semibold">
                 Password
               </label>
@@ -156,7 +156,7 @@ function AddDoctor() {
                 required
               />
             </div>
-            <div className="flex flex-col gap-2 mb-[30px]">
+            <div className="flex flex-col gap-2 mb-6 md:mb-[30px]">
               <label htmlFor="phoneNumber" className="font-semibold">
                 Phone Number
               </label>
@@ -171,16 +171,16 @@ function AddDoctor() {
               />
             </div>
 
-            <div className="mb-[50px]">
+            <div className="mb-8 md:mb-[50px]">
               <BranchList branches={branches} setBranches={setBranches} />
             </div>
-            <div className="flex justify-end gap-[5px]">
+            <div className="flex flex-col md:flex-row justify-end gap-4 md:gap-[5px]">
               <Link to="/">
-                <button className="bg-transparent text-secondary-text-color border-2 border-secondary-text-color rounded-md font-extrabold w-[92px] h-[59px]">
+                <button className="bg-transparent text-secondary-text-color border-2 border-secondary-text-color rounded-md font-extrabold w-full md:w-[92px] h-[59px]">
                   Back
                 </button>
               </Link>
-              <button className="bg-secondary-text-color text-lg text-white rounded-md font-extrabold w-[199px] h-[59px]">
+              <button className="bg-secondary-text-color text-lg text-white rounded-md font-extrabold w-full md:w-[199px] h-[59px]">
                 Add Doctor
               </button>
             </div>

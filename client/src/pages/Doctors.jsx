@@ -18,10 +18,10 @@ function Doctors() {
     <div className="bg-light-primary min-h-screen">
       <div className="w-2/3 container mx-auto py-16">
         <div className="flex items-center justify-between mb-10">
-          <h1 className="text-4xl font-lora font-semibold">Doctors</h1>
+          <h1 className="text-5xl font-lora font-semibold">Doctors</h1>
           <Link
             to={"/add-doctor"}
-            className="flex items-center justify-center gap-2"
+            className="flex items-center justify-center gap-2 text-lg font-semibold"
           >
             <Add />
             Add

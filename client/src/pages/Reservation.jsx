@@ -175,7 +175,7 @@ function Reservation() {
                 </option>
                 {availableBranches.branches.map((branch, index) => (
                   <option key={index} value={branch}>
-                    {branch}
+                    {branch} Branch
                   </option>
                 ))}
               </select>

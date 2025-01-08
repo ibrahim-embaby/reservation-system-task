@@ -34,6 +34,39 @@ module.exports.createDoctorCtrl = async (req, res) => {
         message: error.details[0].message,
       });
     }
+
+    // check if doctor email or phone number already exists
+    const doctorExists = await Doctor.findOne({
+      $or: [{ email: req.body.email }, { phoneNumber: req.body.phoneNumber }],
+    });
+    if (doctorExists) {
+      return res.status(400).json({
+        success: false,
+        data: null,
+        message: "Doctor already exists.",
+      });
+    }
+
+    // check if doctor chose the same day for two clincs
+    const days = new Set();
+    const workingHoursCorrect = req.body.workingHours.map((branch) => {
+      branch.workingDays.map((day) => {
+        if (days.has(day)) {
+          return false;
+        } else {
+          days.add(day);
+        }
+      });
+      return true;
+    });
+    if (!workingHoursCorrect) {
+      return res.status(400).json({
+        success: false,
+        data: null,
+        message: "A doctor cannot work in two clinics on the same day.",
+      });
+    }
+
     const newDoctor = await Doctor.create(req.body);
     res.status(201).json({
       success: true,
@@ -42,21 +75,6 @@ module.exports.createDoctorCtrl = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    if (error.code === 11000) {
-      if (error.keyPattern?.email) {
-        return res.status(400).json({
-          success: false,
-          data: null,
-          message: "Email already exists",
-        });
-      } else if (error.keyPattern?.phoneNumber) {
-        return res.status(400).json({
-          success: false,
-          data: null,
-          message: "Phone Number already exists",
-        });
-      }
-    }
     res.status(500).json({
       success: false,
       data: null,

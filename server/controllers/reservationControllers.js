@@ -88,6 +88,7 @@ module.exports.getTodayReservationsCtrl = async (req, res) => {
   try {
     const reservations = await Reservation.find();
 
+    // only send today's sessions
     const todaySessions = reservations.filter((reservation) => {
       const selectedDate = new Date(reservation.selectedDate);
       const selectedDayName = days[selectedDate.getDay()];

@@ -19,7 +19,7 @@ function DoctorItem({ doctor, styles }) {
     >
       <div className="flex items-center gap-4">
         <SmAvatar />
-        <p className="text-[#0F0F12] font-semibold text-[24px] leading-[36px]">
+        <p className="text-[#0F0F12] font-semibold text-2xl leading-[36px]">
           Dr. {`${doctor.firstName} ${doctor.lastName}`}
         </p>
       </div>

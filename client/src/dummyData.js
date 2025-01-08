@@ -9,72 +9,20 @@ export const doctors = [
   "Dr. Kareem Mohamed",
 ];
 
-export const reservedSessions = [
-  {
-    name: "Shockwave session",
-    patientName: "Performed to Patient’s Name",
-    doctorName: "by Doctor’s Name",
-    price: 400,
-    time: "12:00PM",
-  },
-  {
-    name: "Shockwave session",
-    patientName: "Performed to Patient’s Name",
-    doctorName: "by Doctor’s Name",
-    price: 400,
-    time: "12:00PM",
-  },
-  {
-    name: "Shockwave session",
-    patientName: "Performed to Patient’s Name",
-    doctorName: "by Doctor’s Name",
-    price: 400,
-    time: "12:00PM",
-  },
-  {
-    name: "Shockwave session",
-    patientName: "Performed to Patient’s Name",
-    doctorName: "by Doctor’s Name",
-    price: 400,
-    time: "12:00PM",
-  },
-  {
-    name: "Shockwave session",
-    patientName: "Performed to Patient’s Name",
-    doctorName: "by Doctor’s Name",
-    price: 400,
-    time: "12:00PM",
-  },
-  {
-    name: "Shockwave session",
-    patientName: "Performed to Patient’s Name",
-    doctorName: "by Doctor’s Name",
-    price: 400,
-    time: "12:00PM",
-  },
-  {
-    name: "Shockwave session",
-    patientName: "Performed to Patient’s Name",
-    doctorName: "by Doctor’s Name",
-    price: 400,
-    time: "12:00PM",
-  },
-];
-
 export const sessions = [
   {
     name: "Recovery Session",
-    value: "recovery",
+    value: "Recovery",
     price: "400",
   },
   {
     name: "Physiotherapy Session",
-    value: "physiotherapy",
+    value: "Physiotherapy",
     price: "700",
   },
   {
     name: "Personal Trainer Session",
-    value: "personal-trainer",
+    value: "Personal Trainer",
     price: "1000",
   },
 ];
@@ -82,14 +30,14 @@ export const sessions = [
 export const branches = [
   {
     name: "Sheraton Branch",
-    value: "sheraton",
+    value: "Sheraton",
   },
   {
     name: "New Cairo Branch",
-    value: "new-cairo",
+    value: "New Cairo",
   },
   {
     name: "Alexandria Branch",
-    value: "alexandria",
+    value: "Alexandria",
   },
 ];

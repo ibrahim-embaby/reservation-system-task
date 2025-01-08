@@ -140,17 +140,22 @@ function Reservation() {
 
   return (
     <div className="bg-light-primary min-h-screen">
-      <div className="w-[1232px] mx-auto py-16">
-        <div className="flex items-center justify-between mb-10">
-          <h1 className="text-5xl font-lora font-semibold">Reservation</h1>
-          <p className="text-[32px] font-medium text-[#0F0F12]">
+      <div className="w-full px-4 sm:px-6 lg:px-8 mx-auto py-8 sm:py-16">
+        <div className="flex flex-col sm:flex-row items-center justify-between mb-6 sm:mb-10">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-lora font-semibold text-center sm:text-left">
+            Reservation
+          </h1>
+          <p className="text-2xl sm:text-3xl lg:text-[32px] font-medium text-[#0F0F12] mt-4 sm:mt-0">
             {sessionTypePrice ? sessionTypePrice + " LE" : null}
           </p>
         </div>
-        <div className="flex justify-between gap-[258px] px-[14px]">
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4 grow">
+        <div className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-[258px] px-0 sm:px-[14px]">
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col gap-4 w-full lg:grow"
+          >
             <div className="flex flex-col gap-2">
-              <label className="text-[#0F0F12] font-semibold text-2xl leading-[36px] font-lora">
+              <label className="text-[#0F0F12] font-semibold text-xl sm:text-2xl leading-[36px] font-lora">
                 Session Type
               </label>
               <select
@@ -168,7 +173,7 @@ function Reservation() {
                 ))}
               </select>
             </div>
-            <div className="flex justify-between items-center relative">
+            <div className="flex flex-col sm:flex-row justify-between items-center relative gap-4 sm:gap-0">
               <label htmlFor="date" className="font-semibold text-lg">
                 Select date
               </label>
@@ -177,10 +182,10 @@ function Reservation() {
                 value={date}
                 onChange={handleDateChange}
                 type="date"
-                className="p-3 rounded-md border-2 border-[#CBD2E0]"
+                className="p-3 rounded-md border-2 border-[#CBD2E0] w-full sm:w-auto"
               />
               {date && availableBranches.branches.length === 0 && (
-                <span className="absolute right-[-172px] text-[10px] font-semibold text-[#0F0F12]">
+                <span className="absolute sm:static sm:right-[-172px] text-[10px] font-semibold text-[#0F0F12] mt-2 sm:mt-0">
                   No Sessions available on that date
                 </span>
               )}
@@ -202,13 +207,13 @@ function Reservation() {
                 ))}
               </select>
             </div>
-            <div className="flex items-center gap-[29px]">
+            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-[29px]">
               <label htmlFor="time">Time: </label>
               <select
                 id="time"
                 value={time}
                 onChange={handleTimeChange}
-                className="p-3 rounded-md border-2 border-[#CBD2E0] grow"
+                className="p-3 rounded-md border-2 border-[#CBD2E0] w-full sm:grow"
               >
                 <option value="" disabled>
                   00:00
@@ -239,7 +244,7 @@ function Reservation() {
           </form>
           <img
             src={heroImage}
-            className="w-[626px] h-[461px] rounded-[10px] border-2 border-black"
+            className="w-full lg:w-[626px] h-auto lg:h-[461px] rounded-[10px] border-2 border-black mt-8 lg:mt-0"
             alt=""
           />
         </div>

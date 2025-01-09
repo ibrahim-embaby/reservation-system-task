@@ -25,7 +25,7 @@ function BranchList({ branches, setBranches }) {
     return Array.from(allSelectedDays);
   };
   return (
-    <div className="flex flex-col gap-[30px]">
+    <div className="flex flex-col gap-4 sm:gap-6 md:gap-[30px]">
       {branches.map((branch, index) => (
         <Branch
           key={index}
@@ -35,15 +35,15 @@ function BranchList({ branches, setBranches }) {
           disabledDays={getAllSelectedDays()}
         />
       ))}
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
         <p
-          className="font-semibold underline text-[14px] cursor-pointer"
+          className="font-semibold underline text-sm sm:text-[14px] cursor-pointer hover:text-primary transition-colors"
           onClick={addBranch}
         >
           Add another branch
         </p>
         <p
-          className="font-semibold text-[#00000059] text-[14px] cursor-pointer"
+          className="font-semibold text-[#00000059] text-sm sm:text-[14px] cursor-pointer hover:text-red-500 transition-colors"
           onClick={() =>
             branches.length > 1 && removeBranch(branches.length - 1)
           }

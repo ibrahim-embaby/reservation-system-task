@@ -53,20 +53,22 @@ function Branch({ index, branchData, updateBranch, disabledDays }) {
     : timeOptions;
 
   return (
-    <div className="flex flex-col  gap-[30px]">
-      <div className="flex items-center gap-[30px]">
-        <div className="flex flex-col gap-2 flex-[2]">
-          <label htmlFor="" className="font-semibold">
+    <div className="flex flex-col gap-6 md:gap-[30px]">
+      {/* Branch, Starting Time, and Ending Time Section */}
+      <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-[30px]">
+        {/* Branch Select */}
+        <div className="flex flex-col gap-2 w-full sm:flex-[2]">
+          <label htmlFor="branch" className="font-semibold">
             Branch
           </label>
           <select
             value={branchData.branch}
             onChange={(e) => handleChange("branch", e.target.value)}
-            className="p-3 rounded-md border-2 border-[#CBD2E0]"
+            className="p-3 rounded-md border-2 border-[#CBD2E0] w-full"
             required
           >
             <option value="">Select</option>
-            {branchOptions.map((branch, index) => (
+            {branchOptions.map((branch) => (
               <option key={branch.value} value={branch.value}>
                 {branch.name}
               </option>
@@ -74,14 +76,15 @@ function Branch({ index, branchData, updateBranch, disabledDays }) {
           </select>
         </div>
 
-        <div className="flex flex-col gap-2 flex-[1]">
-          <label htmlFor="" className="font-semibold">
+        {/* Starting Time Select */}
+        <div className="flex flex-col gap-2 w-full sm:flex-[1]">
+          <label htmlFor="startingTime" className="font-semibold">
             Starting time
           </label>
           <select
             value={branchData.startingTime}
             onChange={(e) => handleChange("startingTime", e.target.value)}
-            className="p-3 rounded-md border-2 border-[#CBD2E0]"
+            className="p-3 rounded-md border-2 border-[#CBD2E0] w-full"
             required
           >
             <option value="">Select</option>
@@ -93,14 +96,15 @@ function Branch({ index, branchData, updateBranch, disabledDays }) {
           </select>
         </div>
 
-        <div className="flex flex-col gap-2 flex-[1]">
-          <label htmlFor="" className="font-semibold">
+        {/* Ending Time Select */}
+        <div className="flex flex-col gap-2 w-full sm:flex-[1]">
+          <label htmlFor="endingTime" className="font-semibold">
             Ending time
           </label>
           <select
             value={branchData.endingTime}
             onChange={(e) => handleChange("endingTime", e.target.value)}
-            className="p-3 rounded-md border-2 border-[#CBD2E0]"
+            className="p-3 rounded-md border-2 border-[#CBD2E0] w-full"
             required
           >
             <option value="">Select</option>
@@ -113,8 +117,9 @@ function Branch({ index, branchData, updateBranch, disabledDays }) {
         </div>
       </div>
 
+      {/* Working Weekdays Section */}
       <div>
-        <label htmlFor="" className="font-semibold block mb-2">
+        <label htmlFor="workingDays" className="font-semibold block mb-2">
           Select Working Weekdays
         </label>
         <DayPicker

@@ -16,7 +16,7 @@ function DayPicker({ selectedDays = [], setSelectedDays, disabledDays = [] }) {
       {days.map((day, index) => (
         <span
           key={index}
-          className={`px-5 py-[10px] border-y-[1.5px] border-r-[1.5px] border-[#2D3648] font-medium font-work-sans text-sm cursor-pointer ${
+          className={`px-[12px] md:px-5 py-[10px] border-y-[1.5px] border-r-[1.5px] border-[#2D3648] font-medium font-work-sans text-sm cursor-pointer ${
             index === 0 &&
             "border-l-[1.5px] rounded-tl-[66px] rounded-bl-[66px]"
           } ${
